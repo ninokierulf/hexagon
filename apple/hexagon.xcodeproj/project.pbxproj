@@ -27,6 +27,7 @@
 		C02BD15527CC6B8F00743AEE /* TestAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAppDelegate.swift; sourceTree = "<group>"; };
 		C02BD15927CC96D200743AEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C03610B127D5A2D90020903F /* HexSwift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HexSwift; path = Packages/HexSwift; sourceTree = "<group>"; };
+		C03610B727D5A38E0020903F /* test_all.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_all.xctestplan; sourceTree = "<group>"; };
 		C0C02E2927BB56A70012D966 /* hexagonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hexagonApp.swift; sourceTree = "<group>"; };
 		C0C02E2A27BB56A70012D966 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C0C02E2B27BB56A90012D966 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +77,7 @@
 		C0C02E2327BB56A60012D966 = {
 			isa = PBXGroup;
 			children = (
+				C03610B727D5A38E0020903F /* test_all.xctestplan */,
 				C03610B027D5A2D90020903F /* Packages */,
 				C0C02E2827BB56A70012D966 /* Shared */,
 				C0C02E4727BB5BF60012D966 /* iOS */,
