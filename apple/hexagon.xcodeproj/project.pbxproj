@@ -11,6 +11,8 @@
 		C02BD15727CC6B8F00743AEE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02BD15427CC6B8F00743AEE /* main.swift */; };
 		C02BD15827CC6B8F00743AEE /* TestAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02BD15527CC6B8F00743AEE /* TestAppDelegate.swift */; };
 		C02BD15A27CC96D200743AEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02BD15927CC96D200743AEE /* SceneDelegate.swift */; };
+		C03610B427D5A2F60020903F /* HexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C03610B327D5A2F60020903F /* HexSwift */; };
+		C03610B627D5A2FC0020903F /* HexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C03610B527D5A2FC0020903F /* HexSwift */; };
 		C0C02E3A27BB56A90012D966 /* hexagonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C02E2927BB56A70012D966 /* hexagonApp.swift */; };
 		C0C02E3B27BB56A90012D966 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C02E2A27BB56A70012D966 /* ContentView.swift */; };
 		C0C02E3C27BB56A90012D966 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C02E2A27BB56A70012D966 /* ContentView.swift */; };
@@ -24,6 +26,7 @@
 		C02BD15427CC6B8F00743AEE /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C02BD15527CC6B8F00743AEE /* TestAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAppDelegate.swift; sourceTree = "<group>"; };
 		C02BD15927CC96D200743AEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C03610B127D5A2D90020903F /* HexSwift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HexSwift; path = Packages/HexSwift; sourceTree = "<group>"; };
 		C0C02E2927BB56A70012D966 /* hexagonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hexagonApp.swift; sourceTree = "<group>"; };
 		C0C02E2A27BB56A70012D966 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C0C02E2B27BB56A90012D966 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C03610B427D5A2F60020903F /* HexSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,19 +51,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C03610B627D5A2FC0020903F /* HexSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C03610B027D5A2D90020903F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				C03610B127D5A2D90020903F /* HexSwift */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		C03610B227D5A2F60020903F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C0C02E2327BB56A60012D966 = {
 			isa = PBXGroup;
 			children = (
+				C03610B027D5A2D90020903F /* Packages */,
 				C0C02E2827BB56A70012D966 /* Shared */,
 				C0C02E4727BB5BF60012D966 /* iOS */,
 				C0C02E3727BB56A90012D966 /* macOS */,
 				C0C02E3127BB56A90012D966 /* Products */,
+				C03610B227D5A2F60020903F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +142,9 @@
 			dependencies = (
 			);
 			name = "hexagon (iOS)";
+			packageProductDependencies = (
+				C03610B327D5A2F60020903F /* HexSwift */,
+			);
 			productName = "hexagon (iOS)";
 			productReference = C0C02E3027BB56A90012D966 /* hexagon.app */;
 			productType = "com.apple.product-type.application";
@@ -137,6 +162,9 @@
 			dependencies = (
 			);
 			name = "hexagon (macOS)";
+			packageProductDependencies = (
+				C03610B527D5A2FC0020903F /* HexSwift */,
+			);
 			productName = "hexagon (macOS)";
 			productReference = C0C02E3627BB56A90012D966 /* hexagon.app */;
 			productType = "com.apple.product-type.application";
@@ -476,6 +504,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C03610B327D5A2F60020903F /* HexSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HexSwift;
+		};
+		C03610B527D5A2FC0020903F /* HexSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HexSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C0C02E2427BB56A60012D966 /* Project object */;
 }
