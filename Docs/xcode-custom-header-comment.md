@@ -1,7 +1,7 @@
 # Xcode New File Custom Headers
 
 
-Find `IDETemplateMacros.plist` in [Files](Files/IDETemplateMacros.plist)
+Find `IDETemplateMacros.plist` in [Files](zFiles/IDETemplateMacros.plist)
 
 Add/modify FILEHEADER in the root as String
 and paste header template as value. 
