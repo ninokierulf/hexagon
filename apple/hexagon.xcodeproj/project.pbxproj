@@ -11,6 +11,7 @@
 		C02BD15727CC6B8F00743AEE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02BD15427CC6B8F00743AEE /* main.swift */; };
 		C02BD15827CC6B8F00743AEE /* TestAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02BD15527CC6B8F00743AEE /* TestAppDelegate.swift */; };
 		C02BD15A27CC96D200743AEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02BD15927CC96D200743AEE /* SceneDelegate.swift */; };
+		C02BD15E27CCA9CA00743AEE /* Docs in Resources */ = {isa = PBXBuildFile; fileRef = C02BD15D27CCA9CA00743AEE /* Docs */; };
 		C03610B427D5A2F60020903F /* HexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C03610B327D5A2F60020903F /* HexSwift */; };
 		C03610B627D5A2FC0020903F /* HexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C03610B527D5A2FC0020903F /* HexSwift */; };
 		C0C02E3A27BB56A90012D966 /* hexagonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C02E2927BB56A70012D966 /* hexagonApp.swift */; };
@@ -26,6 +27,7 @@
 		C02BD15427CC6B8F00743AEE /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C02BD15527CC6B8F00743AEE /* TestAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAppDelegate.swift; sourceTree = "<group>"; };
 		C02BD15927CC96D200743AEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C02BD15D27CCA9CA00743AEE /* Docs */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Docs; path = ../Docs; sourceTree = "<group>"; };
 		C03610B127D5A2D90020903F /* HexSwift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HexSwift; path = Packages/HexSwift; sourceTree = "<group>"; };
 		C03610B727D5A38E0020903F /* test_all.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_all.xctestplan; sourceTree = "<group>"; };
 		C0C02E2927BB56A70012D966 /* hexagonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hexagonApp.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				C03610B727D5A38E0020903F /* test_all.xctestplan */,
+				C02BD15D27CCA9CA00743AEE /* Docs */,
 				C03610B027D5A2D90020903F /* Packages */,
 				C0C02E2827BB56A70012D966 /* Shared */,
 				C0C02E4727BB5BF60012D966 /* iOS */,
@@ -214,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0C02E3D27BB56A90012D966 /* Assets.xcassets in Resources */,
+				C02BD15E27CCA9CA00743AEE /* Docs in Resources */,
 				C0C02E4D27BB5DC60012D966 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
