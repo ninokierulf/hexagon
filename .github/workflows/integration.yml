@@ -14,6 +14,8 @@ jobs:
     strategy: 
       matrix:
         xcode: ["13.2.1"]
+        options: 
+          - { display: false }
         run-config:
           - { xcodeproj: 'hexagon.xcodeproj', scheme: 'hexagon (macOS)', destination: 'platform=macOS'}
           - { xcodeproj: 'hexagon.xcodeproj', scheme: 'hexagon (iOS)', destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 13' }
@@ -23,8 +25,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: List Available Applications
+        if: matrix.options.display
         run: ls /Applications
-
+        
       - name: Switch to Xcode ${{ matrix.xcode }}
         run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
 
@@ -34,10 +37,12 @@ jobs:
 
       - name: Show Build SDK
         working-directory: ./apple
+        if: matrix.options.display
         run: xcodebuild -showsdks
 
       - name: Show Available Destinations
         working-directory: ./apple
+        if: matrix.options.display
         run: xcodebuild -scheme '${{ matrix.run-config['scheme'] }}' -showdestinations
 
       - name: Show Build Settings
