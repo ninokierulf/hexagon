@@ -44,6 +44,6 @@ jobs:
         env:
           scheme: ${{ matrix.run-config['scheme'] }}  
         working-directory: ./apple  
-        run: xcodebuild -scheme ${scheme} -showdestinations
+        run: xcodebuild -scheme "${scheme}" -showdestinations
 
 
