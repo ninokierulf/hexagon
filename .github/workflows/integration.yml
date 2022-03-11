@@ -15,8 +15,8 @@ jobs:
       matrix:
         xcode: ["13.2.1"]
         run-config:
-          - { scheme: 'hexagon (macOS)', destination: 'platform=macOS'}
-          - { scheme: 'hexagon (iOS)', destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 13' }
+          - { xcodeproj: 'hexagon.xcodeproj', scheme: 'hexagon (macOS)', destination: 'platform=macOS'}
+          - { xcodeproj: 'hexagon.xcodeproj', scheme: 'hexagon (iOS)', destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 13' }
 
     steps:
       - name: Checkout
@@ -48,10 +48,10 @@ jobs:
 
       - name: Build
         working-directory: ./apple
-        run: xcodebuild build-for-testing -project hexagon.xcodeproj -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}'
+        run: xcodebuild build-for-testing -project ${{ matrix.run-config['xcodeproj'] }} -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}'
 
       - name: Test
         working-directory: ./apple
-        run: xcodebuild test-without-building -project hexagon.xcodeproj -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}'
+        run: xcodebuild test-without-building -project ${{ matrix.run-config['xcodeproj'] }} -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}'
 
 
