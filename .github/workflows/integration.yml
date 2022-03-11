@@ -32,10 +32,6 @@ jobs:
         working-directory: ./apple
         run: xcodebuild -version
 
-      - name: Show Build Settings
-        working-directory: ./apple
-        run: xcodebuild -showBuildSettings
-        
       - name: Show Build SDK
         working-directory: ./apple
         run: xcodebuild -showsdks
@@ -45,6 +41,10 @@ jobs:
           scheme: ${{ matrix.run-config['scheme'] }}
         working-directory: ./apple
         run: xcodebuild -scheme "${scheme}" -showdestinations
+
+      - name: Show Build Settings
+        working-directory: ./apple
+        run: xcodebuild -showBuildSettings
 
       - name: Build
         working-directory: ./apple
