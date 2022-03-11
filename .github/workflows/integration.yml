@@ -42,8 +42,16 @@ jobs:
 
       - name: Show Available Destinations
         env:
-          scheme: ${{ matrix.run-config['scheme'] }}  
-        working-directory: ./apple  
+          scheme: ${{ matrix.run-config['scheme'] }}
+        working-directory: ./apple
         run: xcodebuild -scheme "${scheme}" -showdestinations
+
+      - name: Build
+        working-directory: ./apple
+        run: xcodebuild build-for-testing -project hexagon.xcodeproj -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}'
+
+      - name: Test
+        working-directory: ./apple
+        run: xcodebuild test-without-building -project hexagon.xcodeproj -scheme '${{ matrix.run-config['scheme'] }}' -destination '${{ matrix.run-config['destination'] }}'
 
 
