@@ -29,17 +29,21 @@ jobs:
         run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
 
       - name: Show Build Version
+        working-directory: ./apple
         run: xcodebuild -version
 
       - name: Show Build Settings
+        working-directory: ./apple
         run: xcodebuild -showBuildSettings
         
       - name: Show Build SDK
+        working-directory: ./apple
         run: xcodebuild -showsdks
 
       - name: Show Available Destinations
         env:
-          scheme: ${{ matrix.run-config['scheme'] }}    
+          scheme: ${{ matrix.run-config['scheme'] }}  
+        working-directory: ./apple  
         run: xcodebuild -scheme ${scheme} -showdestinations
 
 
