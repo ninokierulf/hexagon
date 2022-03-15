@@ -47,3 +47,4 @@ Place `IDETemplateMacros.plist` in preferred location in [Search Locations](#sea
 
 # References
 - https://useyourloaf.com/blog/changing-xcode-header-comment/
+- https://medium.com/@silmy/how-to-easily-change-your-file-header-text-in-xcode-347fa77d76f4
