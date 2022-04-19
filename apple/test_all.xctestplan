@@ -18,6 +18,27 @@
         "identifier" : "HexSwiftTests",
         "name" : "HexSwiftTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/HexFoundation",
+        "identifier" : "HexNetworkingTests",
+        "name" : "HexNetworkingTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/HexFoundation",
+        "identifier" : "HexUITests",
+        "name" : "HexUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Packages\/HexFoundation",
+        "identifier" : "HexUtilTests",
+        "name" : "HexUtilTests"
+      }
     }
   ],
   "version" : 1

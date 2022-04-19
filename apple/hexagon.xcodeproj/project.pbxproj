@@ -13,6 +13,8 @@
 		C02BD15A27CC96D200743AEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02BD15927CC96D200743AEE /* SceneDelegate.swift */; };
 		C03610B427D5A2F60020903F /* HexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C03610B327D5A2F60020903F /* HexSwift */; };
 		C03610B627D5A2FC0020903F /* HexSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C03610B527D5A2FC0020903F /* HexSwift */; };
+		C05556902807D39200B09BC9 /* HexFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C055568F2807D39200B09BC9 /* HexFoundation */; };
+		C05556922807D49000B09BC9 /* HexFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C05556912807D49000B09BC9 /* HexFoundation */; };
 		C0C02E3A27BB56A90012D966 /* hexagonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C02E2927BB56A70012D966 /* hexagonApp.swift */; };
 		C0C02E3B27BB56A90012D966 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C02E2A27BB56A70012D966 /* ContentView.swift */; };
 		C0C02E3C27BB56A90012D966 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C02E2A27BB56A70012D966 /* ContentView.swift */; };
@@ -28,6 +30,7 @@
 		C02BD15927CC96D200743AEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C03610B127D5A2D90020903F /* HexSwift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HexSwift; path = Packages/HexSwift; sourceTree = "<group>"; };
 		C03610B727D5A38E0020903F /* test_all.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = test_all.xctestplan; sourceTree = "<group>"; };
+		C055568E2807D1CA00B09BC9 /* HexFoundation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = HexFoundation; path = Packages/HexFoundation; sourceTree = "<group>"; };
 		C0C02E2927BB56A70012D966 /* hexagonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hexagonApp.swift; sourceTree = "<group>"; };
 		C0C02E2A27BB56A70012D966 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C0C02E2B27BB56A90012D966 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C03610B427D5A2F60020903F /* HexSwift in Frameworks */,
+				C05556922807D49000B09BC9 /* HexFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C03610B627D5A2FC0020903F /* HexSwift in Frameworks */,
+				C05556902807D39200B09BC9 /* HexFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				C03610B127D5A2D90020903F /* HexSwift */,
+				C055568E2807D1CA00B09BC9 /* HexFoundation */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -146,6 +152,7 @@
 			name = "hexagon (iOS)";
 			packageProductDependencies = (
 				C03610B327D5A2F60020903F /* HexSwift */,
+				C05556912807D49000B09BC9 /* HexFoundation */,
 			);
 			productName = "hexagon (iOS)";
 			productReference = C0C02E3027BB56A90012D966 /* hexagon.app */;
@@ -166,6 +173,7 @@
 			name = "hexagon (macOS)";
 			packageProductDependencies = (
 				C03610B527D5A2FC0020903F /* HexSwift */,
+				C055568F2807D39200B09BC9 /* HexFoundation */,
 			);
 			productName = "hexagon (macOS)";
 			productReference = C0C02E3627BB56A90012D966 /* hexagon.app */;
@@ -515,6 +523,14 @@
 		C03610B527D5A2FC0020903F /* HexSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HexSwift;
+		};
+		C055568F2807D39200B09BC9 /* HexFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HexFoundation;
+		};
+		C05556912807D49000B09BC9 /* HexFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HexFoundation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
