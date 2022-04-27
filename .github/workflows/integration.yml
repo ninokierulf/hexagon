@@ -10,15 +10,15 @@ on:
 jobs:
   build:
 
-    runs-on: macos-11
+    runs-on: macos-12
     strategy: 
       matrix:
-        xcode: ["13.2.1"]
+        xcode: ["13.3.1"]
         options: 
           - { display: false }
         run-config:
           - { xcodeproj: 'hexagon.xcodeproj', scheme: 'hexagon (macOS)', destination: 'platform=macOS'}
-          - { xcodeproj: 'hexagon.xcodeproj', scheme: 'hexagon (iOS)', destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 13' }
+          - { xcodeproj: 'hexagon.xcodeproj', scheme: 'hexagon (iOS)', destination: 'platform=iOS Simulator,OS=15.4,name=iPhone 13' }
 
     steps:
       - name: Checkout
