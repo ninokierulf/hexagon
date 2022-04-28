@@ -1,0 +1,72 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+# ENV for boolean
+class ENVBool 
+  TRUTHY_VALUES = %w(t true yes y 1).freeze
+  FALSEY_VALUES = %w(f false n no 0).freeze
+  
+  def self.[](key)
+    value = ENV[key].to_s.downcase
+    return true if TRUTHY_VALUES.include?(value.to_s)
+    return false if FALSEY_VALUES.include?(value.to_s)
+    return false
+  end
+end
+
+
+default_platform(:ios)
+
+platform :ios do
+
+  lane :generate_beta do
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      team_id: ENV["XC_DEVELOPMENT_TEAM"],
+      bundle_identifier: ENV["XC_PRODUCT_BUNDLE_IDENTIFIER"],
+      profile_name: ENV["XC_PROVISIONING_PROFILE_SPECIFIER"],
+      code_sign_identity: ENV["XC_CODE_SIGN_IDENTITY"]
+    )
+
+    build_app(
+      scheme: ENV["XCSCHEME"],
+      configuration: ENV["XCCONF"],
+      output_name: ENV["XC_ARTIFACT_NAME"],
+      output_directory: ENV["PATH_XCARCHIVE_EXPORT"],
+      export_options: {
+        method: ENV["XC_EXPORT_METHOD"],
+        compileBitcode: ENVBool["XC_EXPORT_USING_BITCODE"]
+      }
+    )
+  end
+
+  lane :upload_beta_appcenter do
+    appcenter_upload(
+      api_token: ENV["APPCENTER_TOKEN"],
+      owner_name: ENV["APPCENTER_OWNER_NAME"],
+      owner_type: ENV["APPCENTER_OWNER_TYPE"],
+      app_name: ENV["APPCENTER_APP_NAME"],
+      file: ENV["PATH_ARTIFACT"],
+      destinations: ENV["APPCENTER_DESTINATION"],
+      destination_type: ENV["APPCENTER_DESTINATION_TYPE"]
+    )
+  end
+
+  lane :deploy_beta do
+    generate_beta
+    upload_beta_appcenter
+  end
+
+end
