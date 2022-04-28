@@ -1,0 +1,126 @@
+
+name: Deploy
+
+on:
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
+
+env:
+  B64_GPG_CERT: ${{ secrets.BETA_B64_GPG_CERT }}
+  B64_GPG_PROVISION: ${{ secrets.BETA_B64_GPG_PROVISION }}
+  PW_GPG_CERT: ${{ secrets.BETA_PW_GPG_CERT }}
+  PW_GPG_PROVISION: ${{ secrets.BETA_PW_GPG_PROVISION }}
+  PW_CERT: ${{ secrets.BETA_PW_CERT }}
+  PW_KEYCHAIN: ${{ secrets.PW_KEYCHAIN }}
+  PATH_BUILD: ${{ '.build' }}
+  PATH_XCARCHIVE: ${{ '.build/hexagon.xcarchive' }}
+  PATH_XCARCHIVE_EXPORT: ${{ '.build/export/' }}
+  PATH_ARTIFACT: ${{ '.build/export/beta.ipa' }}
+  NAME_APP: ${{ 'hexagon' }}
+  XCPROJ: ${{ 'apple/hexagon.xcodeproj' }}
+  XCSCHEME: ${{ 'hexagon (iOS)' }}
+  XCCONF: ${{ 'Release' }}
+  XC_DEVELOPMENT_TEAM: ${{ secrets.BETA_DEVELOPMENT_TEAM }}
+  XC_PRODUCT_BUNDLE_IDENTIFIER: ${{ secrets.BETA_PRODUCT_BUNDLE_IDENTIFIER }}
+  XC_PROVISIONING_PROFILE_SPECIFIER : ${{ secrets.BETA_PROVISIONING_PROFILE_SPECIFIER }}
+  XC_CODE_SIGN_STYLE: ${{ secrets.BETA_CODE_SIGN_STYLE }}
+  XC_CODE_SIGN_IDENTITY: ${{ secrets.BETA_CODE_SIGN_IDENTITY }}
+  XC_EXPORT_METHOD: ${{ secrets.BETA_EXPORT_METHOD }}
+  XC_EXPORT_USING_BITCODE: ${{ true }}
+  XC_ARTIFACT_NAME: ${{ 'beta' }}
+  NAME_KEYCHAIN: ${{ 'app-sign.keychain-db' }}
+  APPCENTER_TOKEN: ${{ secrets.BETA_APPCENTER_TOKEN }}
+  APPCENTER_OWNER_NAME: ${{ secrets.BETA_APPCENTER_OWNER_NAME }}
+  APPCENTER_OWNER_TYPE: ${{ secrets.BETA_APPCENTER_OWNER_TYPE }}
+  APPCENTER_DESTINATION: ${{ secrets.BETA_APPCENTER_DESTINATION }}
+  APPCENTER_DESTINATION_TYPE: ${{ secrets.BETA_APPCENTER_DESTINATION_TYPE }}
+  APPCENTER_APP_NAME: ${{ 'hexagon-v' }}
+
+
+jobs:
+  build:
+
+    if: ${{ github.event.pull_request.merged }}
+    name: build
+    runs-on: macos-12
+
+
+    strategy:
+      matrix:
+        xcode: ["13.3.1"]
+
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup ruby env
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.6
+          bundler-cache: true
+
+      - name: Install Gemfile
+        working-directory: ./apple
+        run: |
+          bundle install
+
+      - name: Prepare Signing & Provisioning
+        run: |
+          # Variables 
+          PATH_CERT=$RUNNER_TEMP/cert.p12
+          PATH_PROVISION=$RUNNER_TEMP/ios.mobileprovision
+          PATH_GPG_CERT=$RUNNER_TEMP/cert.p12.gpg
+          PATH_GPG_PROVISION=$RUNNER_TEMP/ios.mobileprovision.gpg
+          PATH_KEYCHAIN=$RUNNER_TEMP/$NAME_KEYCHAIN
+          
+          # Decode and place Base64 files
+          echo -n "$B64_GPG_CERT" | base64 --decode --output=$PATH_GPG_CERT
+          echo -n "$B64_GPG_PROVISION" | base64 --decode --output=$PATH_GPG_PROVISION
+
+          # Decrypt code signing files
+          gpg --quiet --batch --yes --decrypt --passphrase="$PW_GPG_CERT" --output $PATH_CERT $PATH_GPG_CERT
+          gpg --quiet --batch --yes --decrypt --passphrase="$PW_GPG_PROVISION" --output $PATH_PROVISION $PATH_GPG_PROVISION
+
+          # Create temporary keychain
+          security create-keychain -p "$PW_KEYCHAIN" $PATH_KEYCHAIN
+          security set-keychain-settings -lut 21600 $PATH_KEYCHAIN
+          security unlock-keychain -p "$PW_KEYCHAIN" $PATH_KEYCHAIN
+
+          # Install in keychain
+          security import $PATH_CERT -P "$PW_CERT" -k $PATH_KEYCHAIN -A -t cert -f pkcs12 
+          security list-keychain -d user -s $PATH_KEYCHAIN
+
+          # Enable codesign without user interaction
+          security set-key-partition-list -S apple-tool:,apple: -s -k $PW_KEYCHAIN -D "${XC_CODE_SIGN_IDENTITY}" -t private $PATH_KEYCHAIN
+
+          # Install Provisioning Profile
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PATH_PROVISION ~/Library/MobileDevice/Provisioning\ Profiles
+
+      - name: Switch to Xcode ${{ matrix.xcode }}
+        run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode }}.app
+
+      - name: Show Build Version
+        run: xcodebuild -version
+
+      - name: Create build folder
+        run: |
+          mkdir -p $PATH_BUILD && mkdir -p $PATH_XCARCHIVE_EXPORT
+
+      - name: Export
+        working-directory: ./apple
+        run: bundle exec fastlane ios deploy_beta
+        
+      - name: Clean up
+        if: ${{ always() }}
+        run: |
+          # Delete temporary keychain
+          security delete-keychain $RUNNER_TEMP/$NAME_KEYCHAIN
+
+          # Restore default keychain
+          security list-keychains -d user -s login.keychain
+
+          # Remove provisioning profiles
+          rm ~/Library/MobileDevice/Provisioning\ Profiles/ios.mobileprovision
